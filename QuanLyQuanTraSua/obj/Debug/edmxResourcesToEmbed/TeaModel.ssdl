@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="passWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="displayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="sex" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="accountType" Type="int" Nullable="false" />
+    <Property Name="avatar" Type="image" />
+    <Property Name="isHide" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTable" Type="int" Nullable="false" />
+    <Property Name="idStaff" Type="int" Nullable="false" />
+    <Property Name="idCustomer" Type="int" Nullable="false" />
+    <Property Name="dateCheckIn" Type="date" Nullable="false" />
+    <Property Name="dateCheckOut" Type="date" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BillInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idBill" Type="int" Nullable="false" />
+    <Property Name="idTea" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TableTea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="img" Type="image" />
+  </EntityType>
+  <Association Name="FK__Bill__idCustomer__45F365D3">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__idStaff__44FF419A">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="idStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__status__440B1D61">
+    <End Role="TableTea" Type="Self.TableTea" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableTea">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="idTable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillInfo__idTea__4AB81AF0">
+    <End Role="Tea" Type="Self.Tea" Multiplicity="1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tea">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="idTea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BillInfo__quanti__49C3F6B7">
+    <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
+    <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="BillInfo">
+        <PropertyRef Name="idBill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeaModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillInfo" EntityType="Self.BillInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableTea" EntityType="Self.TableTea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tea" EntityType="Self.Tea" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Bill__idCustomer__45F365D3" Association="Self.FK__Bill__idCustomer__45F365D3">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__idStaff__44FF419A" Association="Self.FK__Bill__idStaff__44FF419A">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__status__440B1D61" Association="Self.FK__Bill__status__440B1D61">
+      <End Role="TableTea" EntitySet="TableTea" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillInfo__idTea__4AB81AF0" Association="Self.FK__BillInfo__idTea__4AB81AF0">
+      <End Role="Tea" EntitySet="Tea" />
+      <End Role="BillInfo" EntitySet="BillInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BillInfo__quanti__49C3F6B7" Association="Self.FK__BillInfo__quanti__49C3F6B7">
+      <End Role="Bill" EntitySet="Bill" />
+      <End Role="BillInfo" EntitySet="BillInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
