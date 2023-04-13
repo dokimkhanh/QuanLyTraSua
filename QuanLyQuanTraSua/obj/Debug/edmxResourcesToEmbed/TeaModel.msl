@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeaModelStoreContainer" CdmEntityContainer="TeaEntities">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="TeaModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="isHide" ColumnName="isHide" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="accountType" ColumnName="accountType" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="displayName" ColumnName="displayName" />
+          <ScalarProperty Name="passWord" ColumnName="passWord" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bill">
+      <EntityTypeMapping TypeName="TeaModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="dateCheckOut" ColumnName="dateCheckOut" />
+          <ScalarProperty Name="dateCheckIn" ColumnName="dateCheckIn" />
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+          <ScalarProperty Name="idStaff" ColumnName="idStaff" />
+          <ScalarProperty Name="idTable" ColumnName="idTable" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillInfo">
+      <EntityTypeMapping TypeName="TeaModel.BillInfo">
+        <MappingFragment StoreEntitySet="BillInfo">
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="idTea" ColumnName="idTea" />
+          <ScalarProperty Name="idBill" ColumnName="idBill" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="TeaModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableTea">
+      <EntityTypeMapping TypeName="TeaModel.TableTea">
+        <MappingFragment StoreEntitySet="TableTea">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tea">
+      <EntityTypeMapping TypeName="TeaModel.Tea">
+        <MappingFragment StoreEntitySet="Tea">
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
