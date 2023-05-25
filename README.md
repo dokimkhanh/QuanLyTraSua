@@ -13,6 +13,7 @@ Simple milk tea shop management source code
 - Manager Customer
 - Manager Bill
 - Export Bill PDF File
+- Manager Statistical
 - ...
 
 
@@ -30,9 +31,32 @@ To run this project, you will need create database name
 `QuanLyMeoTea`
 
 
-## Support
+## Screenshots
+- Login Form
+![Login Form](https://i.imgur.com/zUq8tQ8.png)
 
-For support, email dokimkhanh7902@gmail.com
+- Table
+![Table Form](https://i.imgur.com/VfdzIPp.png)
+
+- Staff
+![Staff Form](https://i.imgur.com/Je53PME.png)
+
+- Customer
+![Customer Form](https://i.imgur.com/u3nRpfb.png)
+
+- Payment
+![Payment Form](https://i.imgur.com/5fzPMTh.png)
+
+- Statistical
+![Statistical Form](https://i.imgur.com/99SGrnC.png)
+
+- PDF Bill
+![PDF BIll](https://i.imgur.com/KNZIOPW.png)
+
+
+## Required
+
+Bunifu UI License
 
 
 ## License
