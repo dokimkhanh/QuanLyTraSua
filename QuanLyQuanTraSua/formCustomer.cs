@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheArtOfDev.HtmlRenderer.Core;
 
 namespace QuanLyQuanTraSua
 {
@@ -26,7 +27,7 @@ namespace QuanLyQuanTraSua
         {
             using(TeaEntities et = new TeaEntities())
             {
-                dgvCustomers.DataSource = (from c in et.Customer select new {ID = c.id, Name = c.name, Address = c.address, Phone = c.phoneNumber}).ToList();
+                dgvCustomers.DataSource = (from c in et.Customer.Where(c => c.isHide == false) select new {ID = c.id, Name = c.name, Address = c.address, Phone = c.phoneNumber, Discount = c.discount}).ToList();
             }
         }
 
@@ -42,7 +43,9 @@ namespace QuanLyQuanTraSua
                         {
                             name = txtCustomerName.Text,
                             address = txtCustomerAddress.Text,
-                            phoneNumber = txtCustomerNumberPhone.Text
+                            phoneNumber = txtCustomerNumberPhone.Text,
+                            discount = !String.IsNullOrEmpty(txtDiscount.Text) ? Convert.ToInt32(txtDiscount.Text) : 0,
+                            isHide = false
                         });
                         te.SaveChanges();
                         MessageBox.Show("Thêm thông tin khách hàng mới thành công", "Thông báo thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -60,17 +63,13 @@ namespace QuanLyQuanTraSua
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtCustomerID.Text = dgvCustomers.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtCustomerName.Text = dgvCustomers.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtCustomerAddress.Text = dgvCustomers.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtCustomerNumberPhone.Text = dgvCustomers.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtDiscount.Text = dgvCustomers.Rows[e.RowIndex].Cells[4].Value.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -86,6 +85,7 @@ namespace QuanLyQuanTraSua
                         update.name= txtCustomerName.Text;
                         update.address= txtCustomerAddress.Text;
                         update.phoneNumber= txtCustomerNumberPhone.Text;
+                        update.discount = Convert.ToInt32(txtDiscount.Text);
                     }
                     tb.SaveChanges();
                     MessageBox.Show("Cập nhật dữ liệu thành công", "thông báo",
@@ -109,6 +109,40 @@ namespace QuanLyQuanTraSua
             using (TeaEntities entities = new TeaEntities())
             {
                 dgvCustomers.DataSource = (from c in entities.Customer.Where(t => t.name.Contains(name)) select new { ID = c.id, Name = c.name, Address = c.address, Phone = c.phoneNumber }).ToList();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (TeaEntities te = new TeaEntities())
+            {
+                if (dgvCustomers.SelectedRows.Count > 0)
+                {
+                    try
+                    {
+                        int id = Convert.ToInt32(dgvCustomers.SelectedRows[0].Cells[0].Value.ToString());
+                        var update = te.Customer.Find(id);
+                        if (update != null)
+                        {
+                            update.isHide = true;
+                        }
+                        te.SaveChanges();
+                        MessageBox.Show("Xoá khách hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("Xoá khách hàng thất bại: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                    LoadCustomer();
+                }
+                else
+                {
+                    MessageBox.Show("Chọn khách hàng cần xoá trước !!!: ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
         }
     }

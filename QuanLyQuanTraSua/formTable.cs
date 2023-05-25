@@ -94,7 +94,7 @@ namespace QuanLyQuanTraSua
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Xoá bàn thất bại do bàn đang có người ngồi" + ex, "Quản lý quán trà sữa ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xoá bàn thất bại do bàn đang có người ngồi", "Quản lý quán trà sữa ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     LoadTable();
                 }

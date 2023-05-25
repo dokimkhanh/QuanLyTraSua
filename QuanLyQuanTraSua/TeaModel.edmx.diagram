@@ -5,17 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d147d0d7e9ec469298fea69f8bc8ccdd" Name="Diagram1">
-        <EntityTypeShape EntityType="TeaModel.Account" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="TeaModel.Bill" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="TeaModel.BillInfo" Width="1.5" PointX="5.25" PointY="1.5" />
-        <EntityTypeShape EntityType="TeaModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="TeaModel.TableTea" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="TeaModel.Tea" Width="1.5" PointX="3" PointY="5.5" />
         <AssociationConnector Association="TeaModel.FK__Bill__idStaff__44FF419A" />
         <AssociationConnector Association="TeaModel.FK__Bill__idCustomer__45F365D3" />
         <AssociationConnector Association="TeaModel.FK__Bill__status__440B1D61" />
         <AssociationConnector Association="TeaModel.FK__BillInfo__quanti__49C3F6B7" />
         <AssociationConnector Association="TeaModel.FK__BillInfo__idTea__4AB81AF0" />
+        <EntityTypeShape EntityType="TeaModel.Account" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="TeaModel.Bill" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TeaModel.BillInfo" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="TeaModel.Customer" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="TeaModel.TableTea" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="TeaModel.Tea" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="TeaModel.FK__Bill__idStaff__45F365D3" />
+        <AssociationConnector Association="TeaModel.FK__Bill__idCustomer__46E78A0C" />
+        <AssociationConnector Association="TeaModel.FK__Bill__status__44FF419A" />
+        <AssociationConnector Association="TeaModel.FK__BillInfo__quanti__4AB81AF0" />
+        <AssociationConnector Association="TeaModel.FK__BillInfo__idTea__4BAC3F29" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

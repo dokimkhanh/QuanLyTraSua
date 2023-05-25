@@ -21,6 +21,7 @@ namespace QuanLyQuanTraSua
         private void formMain_Load(object sender, EventArgs e)
         {
             LoadInfo();
+            OpenChildForm(new formPayment());
         }
 
 
@@ -123,6 +124,11 @@ namespace QuanLyQuanTraSua
         private void formMain_FormClosed_1(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void bunifuButton1_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new formThongKe());
         }
     }
 }

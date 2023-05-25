@@ -1,4 +1,5 @@
 ﻿using Bunifu.UI.WinForms;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -10,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,11 +46,10 @@ namespace QuanLyQuanTraSua
                 {
                     System.Windows.Forms.Button b = new System.Windows.Forms.Button();
                     b.Size = new Size(90, 90);
-                    b.Text = item.id + ":" + item.name + Environment.NewLine;
+                    b.Text = item.name + Environment.NewLine;
                     b.Tag = item;
-                    b.TextAlign = ContentAlignment.BottomCenter;
+                    b.TextAlign = ContentAlignment.MiddleCenter;
                     b.Padding = new Padding(0, 0, 0, 5);
-                    b.Image = Properties.Resources.table_32px;
                     b.BackColor = CheckTableColor(item.id);
                     b.Click += new EventHandler(BanClick);
                     flowLayoutPanelBan.Controls.Add(b);
@@ -191,10 +192,41 @@ namespace QuanLyQuanTraSua
         {
             using (TeaEntities entities = new TeaEntities())
             {
-                var result = entities.Customer.ToList();
+                var result = (from x in entities.Customer select new {x.id, x.name}).ToList();
                 cbbKhachHang.DataSource = result;
                 cbbKhachHang.DisplayMember = "name";
                 cbbKhachHang.ValueMember = "id";
+            }
+        }
+        private string x;
+        private void cbbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isDisCus.Checked)
+            {
+                ShowDiscount();
+            }
+        }
+
+        private void ShowDiscount()
+        {
+            int id = Convert.ToInt32(cbbKhachHang.SelectedValue);
+            using (TeaEntities entities = new TeaEntities())
+            {
+                var res = (from x in entities.Customer.Where(x => x.id == id) select new { Discount = x.discount }).FirstOrDefault();
+                txtDisCus.Text = res.Discount.ToString();
+            }
+        }
+
+        private void LoadCheckDiscount()
+        {
+            if (isDisPer.Checked)
+            {
+                panelPer.Enabled = true;
+                panelCus.Enabled = false;
+            } else
+            {
+                panelPer.Enabled = false;
+                panelCus.Enabled = true;
             }
         }
 
@@ -203,6 +235,7 @@ namespace QuanLyQuanTraSua
             HienThiMenu();
             HienThiBan();
             LoadCustomer();
+            LoadCheckDiscount();
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -212,6 +245,8 @@ namespace QuanLyQuanTraSua
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string khach = string.Empty;
+            int discount = 0;
             var info = ShowAccountInfo();
             try
             {
@@ -220,7 +255,11 @@ namespace QuanLyQuanTraSua
                 {
                     priceTotal += Convert.ToInt32(row.Cells[3].Value);
                 }
-                ExportToPDF(dgvTea, "hoadon", lblBan.Text, info.displayName, cbbKhachHang.Text, TeaHelper.ConvertMoney(priceTotal));
+
+                khach = (isDisPer.Checked == true) ? txtTempCus.Text : cbbKhachHang.Text;
+                discount = (isDisPer.Checked == true) ? Convert.ToInt32(txtDisPer.Text) : Convert.ToInt32(txtDisCus.Text);
+
+                ExportToPDF(dgvTea, "hoadon", lblBan.Text, info.displayName, khach, priceTotal.ToString(), discount);
                 MessageBox.Show("Xuất hoá đơn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -230,7 +269,7 @@ namespace QuanLyQuanTraSua
             }
         }
 
-        private void ExportToPDF(DataGridView gridView, string _filename, string _tableName, string _staff, string _customer, string _total)
+        private void ExportToPDF(DataGridView gridView, string _filename, string _tableName, string _staff, string _customer, string _total, int giamgia)
         {
             BaseFont bf = BaseFont.CreateFont(Environment.GetEnvironmentVariable("windir") + @"\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             PdfPTable pdfPTable = new PdfPTable(gridView.Columns.Count);
@@ -271,27 +310,57 @@ namespace QuanLyQuanTraSua
                     document.Open();
 
                     iTextSharp.text.Image teaLogo = iTextSharp.text.Image.GetInstance("logoTea.png");
-                    teaLogo.ScalePercent(7f);
+                    teaLogo.ScalePercent(50f);
                     teaLogo.Alignment = Element.ALIGN_CENTER;
                     document.Add(teaLogo);
 
 
                     PdfPTable titleTable = new PdfPTable(1);
-                    titleTable.AddCell(new PdfPCell(new Phrase($"Số phiếu #MT{TeaHelper.RandomString(7)}", textHeader))
+                    titleTable.AddCell(new PdfPCell(new Paragraph("Địa chỉ: Ngõ 36, Phú Diễn, Phú Diễn, Bắc Từ Liêm, Hà Nội", normal))
+                    {
+                        BorderWidth = 0,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    });
+                    titleTable.AddCell(new PdfPCell(new Paragraph("Số điện thoại: 0987412111", normal))
+                    {
+                        BorderWidth = 0,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    });
+                    titleTable.AddCell(new PdfPCell(new Paragraph("----------------", normal))
+                    {
+                        BorderWidth = 0,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    });
+                    titleTable.AddCell(new PdfPCell(new Paragraph("HOÁ ĐƠN THANH TOÁN", textHeader))
                     {
                         BorderWidth = 0,
                         HorizontalAlignment = Element.ALIGN_CENTER
                     });
 
-                    document.Add(titleTable);
+                    titleTable.AddCell(new PdfPCell(new Phrase($"Số: HD{TeaHelper.RandomString(7)}", normal))
+                    {
+                        BorderWidth = 0,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    });
+
+                    document.Add(titleTable); 
                     document.Add(new Paragraph($"Ngày tạo: {DateTime.Now}", normal));
                     document.Add(new Paragraph($"Tên bàn: {_tableName}", normal));
-                    document.Add(new Paragraph($"Nhân viên: {_staff}", normal));
+                    document.Add(new Paragraph($"Nhân viên thu ngân: {_staff}", normal));
                     document.Add(new Paragraph($"Khách hàng: {_customer}", normal));
                     document.Add(new Paragraph(" ", normal));
                     document.Add(pdfPTable);
                     document.Add(new Paragraph(" ", normal));
-                    document.Add(new Paragraph($"Tổng cộng: {_total}đ", normal));
+
+                    int tien = Convert.ToInt32(_total);
+                    int tienduocgiam = tien - (tien * giamgia) /100;
+                    int thue = (int)(tienduocgiam * 0.01);
+                    int tongcong = ((int)(tienduocgiam + thue));
+
+                    document.Add(new Paragraph($"Tổng thành tiền: { TeaHelper.ConvertMoney(tien)}đ", normal));
+                    document.Add(new Paragraph($"Giảm giá {giamgia}%: {TeaHelper.ConvertMoney(tienduocgiam)}đ", normal));
+                    document.Add(new Paragraph($"Phí VAT (1%): {TeaHelper.ConvertMoney(Math.Abs(thue))}đ", normal));
+                    document.Add(new Paragraph($"Tổng cộng: {TeaHelper.ConvertMoney(Math.Abs(tongcong))}đ", normal));
 
                     document.Close();
                     stream.Close();
@@ -321,11 +390,6 @@ namespace QuanLyQuanTraSua
         {
             
         }
-
-        
-
-        
-
         private void numQuantity_ValueChanged(object sender, EventArgs e)
         {
 
@@ -406,6 +470,7 @@ namespace QuanLyQuanTraSua
                         update.status = 1;
                     }
 
+
                     var updateTable = teaEntities.TableTea.Find(idTable);
                     if (updateTable != null)
                     {
@@ -427,10 +492,14 @@ namespace QuanLyQuanTraSua
             }
         }
 
-        private void cbbKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        private void isDisPer_CheckedChanged(object sender, EventArgs e)
         {
-            
-            //MessageBox.Show("Đang chọn: " + cbbKhachHang.SelectedValue);
+            LoadCheckDiscount();
+        }
+
+        private void isDisCus_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadCheckDiscount();
         }
     }
 }

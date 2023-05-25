@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formAccount));
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties4 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties5 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.txtStaffPhone = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtStaffAddress = new System.Windows.Forms.TextBox();
@@ -56,7 +56,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtSearch = new Bunifu.UI.WinForms.BunifuTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -224,6 +223,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(403, 126);
             this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(288, 25);
             this.txtUsername.TabIndex = 27;
             // 
@@ -260,20 +260,6 @@
             this.label9.TabIndex = 31;
             this.label9.Text = "Chức vụ:";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.checkBox1.Location = new System.Drawing.Point(697, 128);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(71, 21);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "Hiển thị";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // txtSearch
             // 
             this.txtSearch.AcceptsReturn = false;
@@ -309,26 +295,26 @@
             this.txtSearch.Modified = false;
             this.txtSearch.Multiline = false;
             this.txtSearch.Name = "txtSearch";
-            stateProperties1.BorderColor = System.Drawing.Color.DodgerBlue;
-            stateProperties1.FillColor = System.Drawing.Color.Empty;
-            stateProperties1.ForeColor = System.Drawing.Color.Empty;
-            stateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.txtSearch.OnActiveState = stateProperties1;
-            stateProperties2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            stateProperties2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            stateProperties2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            stateProperties2.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.txtSearch.OnDisabledState = stateProperties2;
-            stateProperties3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            stateProperties3.FillColor = System.Drawing.Color.Empty;
-            stateProperties3.ForeColor = System.Drawing.Color.Empty;
-            stateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.txtSearch.OnHoverState = stateProperties3;
-            stateProperties4.BorderColor = System.Drawing.Color.Silver;
-            stateProperties4.FillColor = System.Drawing.Color.White;
-            stateProperties4.ForeColor = System.Drawing.Color.Empty;
-            stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
-            this.txtSearch.OnIdleState = stateProperties4;
+            stateProperties5.BorderColor = System.Drawing.Color.DodgerBlue;
+            stateProperties5.FillColor = System.Drawing.Color.Empty;
+            stateProperties5.ForeColor = System.Drawing.Color.Empty;
+            stateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.txtSearch.OnActiveState = stateProperties5;
+            stateProperties6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            stateProperties6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            stateProperties6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            stateProperties6.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtSearch.OnDisabledState = stateProperties6;
+            stateProperties7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            stateProperties7.FillColor = System.Drawing.Color.Empty;
+            stateProperties7.ForeColor = System.Drawing.Color.Empty;
+            stateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.txtSearch.OnHoverState = stateProperties7;
+            stateProperties8.BorderColor = System.Drawing.Color.Silver;
+            stateProperties8.FillColor = System.Drawing.Color.White;
+            stateProperties8.ForeColor = System.Drawing.Color.Empty;
+            stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
+            this.txtSearch.OnIdleState = stateProperties8;
             this.txtSearch.Padding = new System.Windows.Forms.Padding(3);
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray;
@@ -380,11 +366,11 @@
             this.button3.ColorContrastOnClick = 45;
             this.button3.ColorContrastOnHover = 45;
             this.button3.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.button3.CustomizableEdges = borderEdges1;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.button3.CustomizableEdges = borderEdges5;
             this.button3.DialogResult = System.Windows.Forms.DialogResult.None;
             this.button3.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.button3.DisabledFillColor = System.Drawing.Color.Empty;
@@ -472,11 +458,11 @@
             this.button2.ColorContrastOnClick = 45;
             this.button2.ColorContrastOnHover = 45;
             this.button2.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.button2.CustomizableEdges = borderEdges2;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.button2.CustomizableEdges = borderEdges6;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.None;
             this.button2.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.button2.DisabledFillColor = System.Drawing.Color.Empty;
@@ -564,11 +550,11 @@
             this.button1.ColorContrastOnClick = 45;
             this.button1.ColorContrastOnHover = 45;
             this.button1.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.button1.CustomizableEdges = borderEdges3;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            this.button1.CustomizableEdges = borderEdges7;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.button1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.button1.DisabledFillColor = System.Drawing.Color.Empty;
@@ -656,11 +642,11 @@
             this.btnUploadAvatar.ColorContrastOnClick = 45;
             this.btnUploadAvatar.ColorContrastOnHover = 45;
             this.btnUploadAvatar.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.btnUploadAvatar.CustomizableEdges = borderEdges4;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            this.btnUploadAvatar.CustomizableEdges = borderEdges8;
             this.btnUploadAvatar.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnUploadAvatar.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnUploadAvatar.DisabledFillColor = System.Drawing.Color.Empty;
@@ -740,7 +726,6 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.cbRole);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtPassword);
@@ -791,7 +776,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbRole;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkBox1;
         private Bunifu.UI.WinForms.BunifuTextBox txtSearch;
         private System.Windows.Forms.Label label10;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton button3;

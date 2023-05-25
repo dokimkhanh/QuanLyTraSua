@@ -43,6 +43,8 @@
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="TeaModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="isHide" ColumnName="isHide" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
           <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="name" ColumnName="name" />

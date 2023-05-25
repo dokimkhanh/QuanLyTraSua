@@ -44,6 +44,8 @@
     <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="phoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="discount" Type="int" Nullable="false" />
+    <Property Name="isHide" Type="bit" />
   </EntityType>
   <EntityType Name="TableTea">
     <Key>
@@ -62,7 +64,7 @@
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="img" Type="image" />
   </EntityType>
-  <Association Name="FK__Bill__idCustomer__45F365D3">
+  <Association Name="FK__Bill__idCustomer__46E78A0C">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -74,7 +76,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__idStaff__44FF419A">
+  <Association Name="FK__Bill__idStaff__45F365D3">
     <End Role="Account" Type="Self.Account" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -86,7 +88,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__status__440B1D61">
+  <Association Name="FK__Bill__status__44FF419A">
     <End Role="TableTea" Type="Self.TableTea" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -98,7 +100,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillInfo__idTea__4AB81AF0">
+  <Association Name="FK__BillInfo__idTea__4BAC3F29">
     <End Role="Tea" Type="Self.Tea" Multiplicity="1" />
     <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -110,7 +112,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillInfo__quanti__49C3F6B7">
+  <Association Name="FK__BillInfo__quanti__4AB81AF0">
     <End Role="Bill" Type="Self.Bill" Multiplicity="1" />
     <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -129,23 +131,23 @@
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TableTea" EntityType="Self.TableTea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tea" EntityType="Self.Tea" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Bill__idCustomer__45F365D3" Association="Self.FK__Bill__idCustomer__45F365D3">
+    <AssociationSet Name="FK__Bill__idCustomer__46E78A0C" Association="Self.FK__Bill__idCustomer__46E78A0C">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__idStaff__44FF419A" Association="Self.FK__Bill__idStaff__44FF419A">
+    <AssociationSet Name="FK__Bill__idStaff__45F365D3" Association="Self.FK__Bill__idStaff__45F365D3">
       <End Role="Account" EntitySet="Account" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__status__440B1D61" Association="Self.FK__Bill__status__440B1D61">
+    <AssociationSet Name="FK__Bill__status__44FF419A" Association="Self.FK__Bill__status__44FF419A">
       <End Role="TableTea" EntitySet="TableTea" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillInfo__idTea__4AB81AF0" Association="Self.FK__BillInfo__idTea__4AB81AF0">
+    <AssociationSet Name="FK__BillInfo__idTea__4BAC3F29" Association="Self.FK__BillInfo__idTea__4BAC3F29">
       <End Role="Tea" EntitySet="Tea" />
       <End Role="BillInfo" EntitySet="BillInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillInfo__quanti__49C3F6B7" Association="Self.FK__BillInfo__quanti__49C3F6B7">
+    <AssociationSet Name="FK__BillInfo__quanti__4AB81AF0" Association="Self.FK__BillInfo__quanti__4AB81AF0">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillInfo" EntitySet="BillInfo" />
     </AssociationSet>

@@ -7,23 +7,23 @@
     <EntitySet Name="Customer" EntityType="TeaModel.Customer" />
     <EntitySet Name="TableTea" EntityType="TeaModel.TableTea" />
     <EntitySet Name="Tea" EntityType="TeaModel.Tea" />
-    <AssociationSet Name="FK__Bill__idStaff__44FF419A" Association="TeaModel.FK__Bill__idStaff__44FF419A">
+    <AssociationSet Name="FK__Bill__idStaff__45F365D3" Association="TeaModel.FK__Bill__idStaff__45F365D3">
       <End Role="Account" EntitySet="Account" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__idCustomer__45F365D3" Association="TeaModel.FK__Bill__idCustomer__45F365D3">
+    <AssociationSet Name="FK__Bill__idCustomer__46E78A0C" Association="TeaModel.FK__Bill__idCustomer__46E78A0C">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__status__440B1D61" Association="TeaModel.FK__Bill__status__440B1D61">
+    <AssociationSet Name="FK__Bill__status__44FF419A" Association="TeaModel.FK__Bill__status__44FF419A">
       <End Role="TableTea" EntitySet="TableTea" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillInfo__quanti__49C3F6B7" Association="TeaModel.FK__BillInfo__quanti__49C3F6B7">
+    <AssociationSet Name="FK__BillInfo__quanti__4AB81AF0" Association="TeaModel.FK__BillInfo__quanti__4AB81AF0">
       <End Role="Bill" EntitySet="Bill" />
       <End Role="BillInfo" EntitySet="BillInfo" />
     </AssociationSet>
-    <AssociationSet Name="FK__BillInfo__idTea__4AB81AF0" Association="TeaModel.FK__BillInfo__idTea__4AB81AF0">
+    <AssociationSet Name="FK__BillInfo__idTea__4BAC3F29" Association="TeaModel.FK__BillInfo__idTea__4BAC3F29">
       <End Role="Tea" EntitySet="Tea" />
       <End Role="BillInfo" EntitySet="BillInfo" />
     </AssociationSet>
@@ -42,7 +42,7 @@
     <Property Name="accountType" Type="Int32" Nullable="false" />
     <Property Name="avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="isHide" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__idStaff__44FF419A" FromRole="Account" ToRole="Bill" />
+    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__idStaff__45F365D3" FromRole="Account" ToRole="Bill" />
   </EntityType>
   <EntityType Name="Bill">
     <Key>
@@ -55,10 +55,10 @@
     <Property Name="dateCheckIn" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="dateCheckOut" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="status" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Account" Relationship="TeaModel.FK__Bill__idStaff__44FF419A" FromRole="Bill" ToRole="Account" />
-    <NavigationProperty Name="Customer" Relationship="TeaModel.FK__Bill__idCustomer__45F365D3" FromRole="Bill" ToRole="Customer" />
-    <NavigationProperty Name="TableTea" Relationship="TeaModel.FK__Bill__status__440B1D61" FromRole="Bill" ToRole="TableTea" />
-    <NavigationProperty Name="BillInfo" Relationship="TeaModel.FK__BillInfo__quanti__49C3F6B7" FromRole="Bill" ToRole="BillInfo" />
+    <NavigationProperty Name="Account" Relationship="TeaModel.FK__Bill__idStaff__45F365D3" FromRole="Bill" ToRole="Account" />
+    <NavigationProperty Name="Customer" Relationship="TeaModel.FK__Bill__idCustomer__46E78A0C" FromRole="Bill" ToRole="Customer" />
+    <NavigationProperty Name="TableTea" Relationship="TeaModel.FK__Bill__status__44FF419A" FromRole="Bill" ToRole="TableTea" />
+    <NavigationProperty Name="BillInfo" Relationship="TeaModel.FK__BillInfo__quanti__4AB81AF0" FromRole="Bill" ToRole="BillInfo" />
   </EntityType>
   <EntityType Name="BillInfo">
     <Key>
@@ -68,8 +68,8 @@
     <Property Name="idBill" Type="Int32" Nullable="false" />
     <Property Name="idTea" Type="Int32" Nullable="false" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__BillInfo__quanti__49C3F6B7" FromRole="BillInfo" ToRole="Bill" />
-    <NavigationProperty Name="Tea" Relationship="TeaModel.FK__BillInfo__idTea__4AB81AF0" FromRole="BillInfo" ToRole="Tea" />
+    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__BillInfo__quanti__4AB81AF0" FromRole="BillInfo" ToRole="Bill" />
+    <NavigationProperty Name="Tea" Relationship="TeaModel.FK__BillInfo__idTea__4BAC3F29" FromRole="BillInfo" ToRole="Tea" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -79,7 +79,9 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__idCustomer__45F365D3" FromRole="Customer" ToRole="Bill" />
+    <Property Name="discount" Type="Int32" Nullable="false" />
+    <Property Name="isHide" Type="Boolean" />
+    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__idCustomer__46E78A0C" FromRole="Customer" ToRole="Bill" />
   </EntityType>
   <EntityType Name="TableTea">
     <Key>
@@ -88,7 +90,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__status__440B1D61" FromRole="TableTea" ToRole="Bill" />
+    <NavigationProperty Name="Bill" Relationship="TeaModel.FK__Bill__status__44FF419A" FromRole="TableTea" ToRole="Bill" />
   </EntityType>
   <EntityType Name="Tea">
     <Key>
@@ -98,9 +100,9 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="BillInfo" Relationship="TeaModel.FK__BillInfo__idTea__4AB81AF0" FromRole="Tea" ToRole="BillInfo" />
+    <NavigationProperty Name="BillInfo" Relationship="TeaModel.FK__BillInfo__idTea__4BAC3F29" FromRole="Tea" ToRole="BillInfo" />
   </EntityType>
-  <Association Name="FK__Bill__idStaff__44FF419A">
+  <Association Name="FK__Bill__idStaff__45F365D3">
     <End Type="TeaModel.Account" Role="Account" Multiplicity="1" />
     <End Type="TeaModel.Bill" Role="Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -112,7 +114,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__idCustomer__45F365D3">
+  <Association Name="FK__Bill__idCustomer__46E78A0C">
     <End Type="TeaModel.Customer" Role="Customer" Multiplicity="1" />
     <End Type="TeaModel.Bill" Role="Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -124,7 +126,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__status__440B1D61">
+  <Association Name="FK__Bill__status__44FF419A">
     <End Type="TeaModel.TableTea" Role="TableTea" Multiplicity="1" />
     <End Type="TeaModel.Bill" Role="Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -136,7 +138,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillInfo__quanti__49C3F6B7">
+  <Association Name="FK__BillInfo__quanti__4AB81AF0">
     <End Type="TeaModel.Bill" Role="Bill" Multiplicity="1" />
     <End Type="TeaModel.BillInfo" Role="BillInfo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -148,7 +150,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BillInfo__idTea__4AB81AF0">
+  <Association Name="FK__BillInfo__idTea__4BAC3F29">
     <End Type="TeaModel.Tea" Role="Tea" Multiplicity="1" />
     <End Type="TeaModel.BillInfo" Role="BillInfo" Multiplicity="*" />
     <ReferentialConstraint>

@@ -148,7 +148,7 @@ namespace QuanLyQuanTraSua
                 }
                 else
                 {
-                    MessageBox.Show("Chọn nhân viên cần cập nhật thông tin !!!: ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Chọn nhân viên cần xoá !!!: ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -198,7 +198,7 @@ namespace QuanLyQuanTraSua
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            txtPassword.PasswordChar = checkBox1.Checked ? '\0' : '*';
+            
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
