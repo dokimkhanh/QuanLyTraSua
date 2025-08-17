@@ -1,67 +1,69 @@
+# Quản lý quán Trà Sữa (QuanLyTraSua) 🍵
 
-# Quản lý quán trà sữa
+Simple milk tea shop management software — ứng dụng WinForms (C#) để quản lý đồ uống, bàn, khách hàng, hoá đơn và báo cáo.
 
-Simple milk tea shop management source code
+---
 
-
-
-
-## Features
-
-- Manager Milk Tea
-- Manager Table
-- Manager Customer
-- Manager Bill
-- Export Bill PDF File
-- Manager Statistical
-- ...
+## 🔥 Tóm tắt
+- Ứng dụng quản lý quán trà sữa (POS-lite) viết bằng **C# (WinForms)**, sử dụng **Entity Framework** và **SQL Server**.  
+- Có sẵn script tạo database `QuanLyTea.sql` trong repo.  
+- License: [MIT](https://choosealicense.com/licenses/mit/)
 
 
-## Tech Stack
+---
 
-**Client:** Entity Framework, Bunifu Framework
+## ⚙️ Tính năng chính
+- Quản lý món (Milk Tea)
+- Quản lý bàn (Table)
+- Quản lý nhân viên / khách hàng
+- Quản lý hoá đơn & xuất PDF hoá đơn
+- Thống kê doanh thu
+- Xuất báo cáo / In hoá đơn
 
-**Server:** SQL Server
+---
 
+## 🧰 Tech stack
+- Client: C# (WinForms) + Entity Framework + Bunifu UI (giao diện)
+- Database: SQL Server (T-SQL)
+- File SQL: `QuanLyTea.sql`
 
-## Environment Variables
+---
 
-To run this project, you will need create database name
+## ✅ Yêu cầu
+- Windows (ứng dụng WinForms)
+- Visual Studio (recommended) hoặc VS Community
+- SQL Server (Express / LocalDB / full)
+- **Bunifu UI license** (project hiện dùng Bunifu — cần license để build/run giao diện đầy đủ)
 
-`QuanLyMeoTea`
+---
 
+## 🚀 Cách cài đặt & chạy (developer)
+1. Clone repo:
+```bash
+git clone https://github.com/dokimkhanh/QuanLyTraSua.git
+cd QuanLyTraSua
+````
 
-## Screenshots
-- Login Form
-![Login Form](https://i.imgur.com/zUq8tQ8.png)
+2. Tạo database:
 
-- Table
-![Table Form](https://i.imgur.com/VfdzIPp.png)
+* Mở `QuanLyTea.sql` bằng SSMS (SQL Server Management Studio) hoặc chạy script trên SQL Server instance của bạn.
+* Tên database mặc định trong README cũ: `QuanLyMeoTea` — có thể đổi trong connection string nếu cần.
 
-- Staff
-![Staff Form](https://i.imgur.com/Je53PME.png)
+3. Mở solution:
 
-- Customer
-![Customer Form](https://i.imgur.com/u3nRpfb.png)
+* Mở `QuanLyQuanTraSua.sln` bằng Visual Studio.
+* Restore NuGet packages (nếu có).
+* Thiết lập connection string (app.config / Settings) trỏ tới SQL Server instance của bạn.
 
-- Payment
-![Payment Form](https://i.imgur.com/5fzPMTh.png)
+Ví dụ connection string (chỉ ví dụ — chỉnh lại theo môi trường):
 
-- Statistical
-![Statistical Form](https://i.imgur.com/99SGrnC.png)
+```xml
+<connectionStrings>
+  <add name="QuanLyTeaConnection" connectionString="Server=.;Database=QuanLyMeoTea;Trusted_Connection=True;" providerName="System.Data.SqlClient"/>
+</connectionStrings>
+```
 
-- PDF Bill
+4. Build & Run:
 
-
-![PDF BIll](https://i.imgur.com/KNZIOPW.png)
-
-
-## Required
-
-Bunifu UI License
-
-
-## License
-
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+* Build solution → Run project chính (WinForms exe).
+* Nếu gặp lỗi thiếu Bunifu, cần cài đặt/đăng ký license hoặc remove/replace component đó để build.
